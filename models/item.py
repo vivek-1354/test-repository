@@ -7,7 +7,7 @@ class ItemModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     price = db.Column(db.Float(precision =2))
-    store_id = db.Column(db.Integer, db.Foreign_key('stores.id'))
+    store_id = db.Column(db.Integer, db.Foreignkey('stores.id'))
     
     db.relationship('StoreModel')
     
