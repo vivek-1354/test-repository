@@ -7,17 +7,18 @@ class ItemModel(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(50))
     price = db.Column(db.Float(precision =2))
-    store_id = db.Column(db.Integer, db.Foreignkey('stores.id'))
+    store_id = db.Column(db.Integer, db.ForeignKey('stores.id'))
     
-    db.relationship('StoreModel')
+    store = db.relationship('StoreModel')
     
-    def __init__(self,name,price):
+    def __init__(self,name,price,store_id):
         self.name = name
         self.price = price
+        self.store_id = store_id
 
 
     def json(self):
-        return {"id":self.id,"name":self.name,"price":self.price}
+        return {"id":self.id,"name":self.name,"price":self.price,"store_id":self.store_id}
 
         # This function authorization if item name exits in database data.sqlite if not exits return none
     @classmethod
