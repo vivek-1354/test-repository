@@ -15,6 +15,11 @@ app.secret_key = 'jose'
 api = Api(app) 
 
 
+@app.before_first_request
+def create_tables():
+    db.create_all()
+
+
 """# Here we insiliaze a JWT object that is going to use our app and authenticate ,identity function together 
 to allow to authentication of the user"""
 
@@ -36,4 +41,4 @@ api.add_resource(StoreList, '/stores')                     #http://127.0.0.1:500
 if __name__ == '__main__':
     from db import db
     db.init_app(app)
-    app.run(debug=True)
+    app.run(host = 'localhost', debug=True )
