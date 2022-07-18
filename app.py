@@ -15,9 +15,6 @@ app.secret_key = 'jose'
 api = Api(app) 
 
 
-@app.before_first_request
-def create_tables():
-    db.create_all()
 
 
 """# Here we insiliaze a JWT object that is going to use our app and authenticate ,identity function together 
